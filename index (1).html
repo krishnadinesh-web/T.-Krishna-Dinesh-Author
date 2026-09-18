@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>T. Krishna Dinesh — Author (Copy)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --paper: #F1E7CF;
+    --paper-deep: #E7D8B2;
+    --paper-raised: #EADFC1;
+    --ink: #241A10;
+    --ink-soft: #6B5A41;
+    --indigo: #233D6E;
+    --gold: #A9791F;
+    --gold-light: #E4B85A;
+    --maroon: #7C2331;
+    --rule: rgba(36,26,16,0.18);
+    --shadow: rgba(36,26,16,0.16);
+    --grain-opacity: 0.05;
+    --font-display: 'Cinzel', 'Trajan Pro', Georgia, serif;
+    --font-serif: 'Cormorant Garamond', 'Iowan Old Style', Georgia, serif;
+    --font-body: 'Work Sans', 'Segoe UI', system-ui, sans-serif;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #17130D;
+      --paper-deep: #201A11;
+      --paper-raised: #221C13;
+      --ink: #F1E6CC;
+      --ink-soft: #B7A688;
+      --indigo: #8FA3D1;
+      --gold: #E4B85A;
+      --gold-light: #F3D48C;
+      --maroon: #DD8991;
+      --rule: rgba(241,230,204,0.16);
+      --shadow: rgba(0,0,0,0.4);
+      --grain-opacity: 0.06;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #17130D;
+    --paper-deep: #201A11;
+    --paper-raised: #221C13;
+    --ink: #F1E6CC;
+    --ink-soft: #B7A688;
+    --indigo: #8FA3D1;
+    --gold: #E4B85A;
+    --gold-light: #F3D48C;
+    --maroon: #DD8991;
+    --rule: rgba(241,230,204,0.16);
+    --shadow: rgba(0,0,0,0.4);
+    --grain-opacity: 0.06;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background:
+      radial-gradient(ellipse 900px 500px at 50% -8%, color-mix(in srgb, var(--gold-light) 18%, transparent), transparent),
+      var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+  }
+
+  /* fine paper grain, fixed, very low opacity */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: var(--grain-opacity);
+    z-index: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+
+  a { color: var(--indigo); }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+  .wrap { max-width: 900px; margin: 0 auto; padding: 0 28px; position: relative; z-index: 1; }
+
+  /* ---------- Nav ---------- */
+  header.site-nav {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    background: color-mix(in srgb, var(--paper) 82%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 17px 28px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .nav-name {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .nav-links { display: flex; gap: 30px; list-style: none; margin: 0; padding: 0; }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--ink-soft);
+    font-size: 0.93rem;
+    font-weight: 500;
+    position: relative;
+    padding-bottom: 3px;
+  }
+  .nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 100%;
+    bottom: 0;
+    height: 1px;
+    background: var(--gold);
+    transition: right 0.25s ease;
+  }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-links a:hover::after { right: 0; }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    padding: 108px 28px 60px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-inner {
+    animation: rise 1.1s cubic-bezier(.2,.7,.3,1) both;
+  }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-glyph {
+    width: 74px;
+    height: 74px;
+    margin: 0 auto 30px;
+    color: var(--gold);
+  }
+  .hero-eyebrow {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--ink-soft);
+    margin: 0 0 10px;
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.3rem, 5.6vw, 3.5rem);
+    line-height: 1.22;
+    margin: 0 0 22px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    background: linear-gradient(115deg, var(--gold-light) 0%, var(--gold) 45%, var(--maroon) 90%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: var(--ink);
+  }
+  .hero p.tagline {
+    font-family: var(--font-serif);
+    font-size: clamp(1.15rem, 2.3vw, 1.4rem);
+    color: var(--ink-soft);
+    max-width: 42ch;
+    margin: 0 auto;
+  }
+
+  .divider {
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    height: 30px;
+    margin: 54px auto;
+    color: var(--gold);
+    opacity: 0.9;
+  }
+
+  /* ---------- About ---------- */
+  .about {
+    display: grid;
+    grid-template-columns: 1fr 220px;
+    gap: 54px;
+    align-items: center;
+    padding: 6px 0 92px;
+  }
+  .about-eyebrow {
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--gold);
+    font-size: 1.1rem;
+    margin: 0 0 10px;
+  }
+  .about blockquote {
+    margin: 0 0 20px;
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    line-height: 1.5;
+    font-style: italic;
+    color: var(--ink);
+    border-left: 2px solid var(--gold);
+    padding-left: 22px;
+  }
+  .about p.bio {
+    max-width: 60ch;
+    color: var(--ink-soft);
+    font-size: 1.03rem;
+  }
+  .about p.bio strong { color: var(--ink); font-weight: 600; }
+  .about-mark { width: 100%; height: auto; color: var(--indigo); opacity: 0.85; }
+
+  .genre-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+  .genre-pill {
+    font-family: var(--font-serif);
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 6px 16px;
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    color: var(--ink-soft);
+    background: var(--paper-raised);
+  }
+
+  /* ---------- Section heading ---------- */
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 16px;
+    margin-bottom: 8px;
+  }
+  .section-head h2 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 1.7rem;
+    margin: 0;
+    letter-spacing: 0.01em;
+  }
+  .section-head span {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--ink-soft);
+  }
+
+  /* ---------- Books ---------- */
+  .books { padding: 44px 0 92px; }
+  .book-row {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 34px 0;
+    border-bottom: 1px solid var(--rule);
+    transition: background 0.2s ease;
+  }
+  .book-row:last-child { border-bottom: none; }
+  .book-meta {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+  }
+  .book-numeral {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    color: var(--gold);
+  }
+  .book-genre {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.02rem;
+    color: var(--maroon);
+  }
+  .book-title {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 1.32rem;
+    margin: 4px 0 6px;
+    color: var(--ink);
+    letter-spacing: 0.005em;
+  }
+  .book-synopsis {
+    font-family: var(--font-serif);
+    font-size: 1.12rem;
+    margin: 0 0 6px;
+    color: var(--ink-soft);
+    max-width: 60ch;
+  }
+  .book-link {
+    font-family: var(--font-body);
+    font-size: 0.88rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--ink);
+    border-bottom: 1px solid var(--gold);
+    padding-bottom: 2px;
+    width: fit-content;
+    transition: color 0.15s ease, border-color 0.15s ease;
+  }
+  .book-link:hover { color: var(--maroon); border-color: var(--maroon); }
+
+  @media (max-width: 640px) {
+    .about { grid-template-columns: 1fr; }
+    .about-mark { width: 130px; margin: 0 auto 10px; order: -1; }
+  }
+
+  /* ---------- Contact ---------- */
+  .contact { padding: 66px 0 120px; text-align: center; }
+  .contact h2 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 2rem;
+    margin: 0 0 16px;
+  }
+  .contact p {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    color: var(--ink-soft);
+    max-width: 44ch;
+    margin: 0 auto 32px;
+  }
+  .contact-links { display: flex; justify-content: center; gap: 18px; flex-wrap: wrap; }
+  .contact-links a {
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.92rem;
+    color: var(--ink);
+    border: 1px solid var(--rule);
+    padding: 12px 24px;
+    border-radius: 2px;
+    background: var(--paper-raised);
+    transition: border-color 0.18s ease, color 0.18s ease, transform 0.18s ease;
+  }
+  .contact-links a:hover {
+    border-color: var(--gold);
+    color: var(--maroon);
+    transform: translateY(-2px);
+  }
+
+  footer {
+    border-top: 1px solid var(--rule);
+    padding: 28px 28px 44px;
+    text-align: center;
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    position: relative;
+    z-index: 1;
+  }
+
+  .edit-note {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 10px 28px 0;
+    text-align: center;
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .hero-inner { animation: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="nav-inner">
+    <a class="nav-name" href="#top">T. Krishna Dinesh</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#books">Books</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="hero-inner">
+      <svg class="hero-glyph" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M40 8C29 22 17 30 17 44C17 58 27 68 40 68C53 68 63 58 63 44C63 30 51 22 40 8Z" stroke="currentColor" stroke-width="1.3"/>
+        <path d="M40 68V76" stroke="currentColor" stroke-width="1.3"/>
+        <path d="M27 76H53" stroke="currentColor" stroke-width="1.3"/>
+        <circle cx="40" cy="42" r="8" stroke="currentColor" stroke-width="1.1"/>
+        <circle cx="40" cy="42" r="2" fill="currentColor"/>
+        <path d="M40 4V8" stroke="currentColor" stroke-width="1.1"/>
+        <path d="M20 16L23 19" stroke="currentColor" stroke-width="1.1"/>
+        <path d="M60 16L57 19" stroke="currentColor" stroke-width="1.1"/>
+      </svg>
+      <p class="hero-eyebrow">the writing of</p>
+      <h1>T. Krishna Dinesh</h1>
+      <p class="tagline">Stories from the edge of myth and memory</p>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <svg class="divider" viewBox="0 0 300 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <line x1="0" y1="15" x2="112" y2="15" stroke="currentColor" stroke-width="1"/>
+      <line x1="188" y1="15" x2="300" y2="15" stroke="currentColor" stroke-width="1"/>
+      <path d="M150 5C158 11 162 15 150 15C138 15 142 11 150 5Z" stroke="currentColor" stroke-width="1.1"/>
+      <path d="M150 15C158 19 162 23 150 25C138 23 142 19 150 15Z" stroke="currentColor" stroke-width="1.1"/>
+      <circle cx="128" cy="15" r="1.8" fill="currentColor"/>
+      <circle cx="172" cy="15" r="1.8" fill="currentColor"/>
+    </svg>
+
+    <section class="about" id="about">
+      <div>
+        <p class="about-eyebrow">About the author</p>
+        <blockquote>Old stories, told again, in a voice meant for everyone who wants to sit down and listen.</blockquote>
+        <p class="bio"><strong>T. Krishna Dinesh</strong> is an Indian author and management graduate whose books move between mythology, horror, romance, and quiet reflection. Working from the Puranas and India's great epics, he retells old stories in plain, welcoming English &mdash; for readers meeting them for the first time and for those returning to them once more.</p>
+        <div class="genre-row">
+          <span class="genre-pill">Mythology &amp; Epics</span>
+          <span class="genre-pill">Horror</span>
+          <span class="genre-pill">Romance &amp; Fantasy</span>
+          <span class="genre-pill">Memoir</span>
+        </div>
+      </div>
+      <svg class="about-mark" viewBox="0 0 160 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M80 10C112 40 134 72 134 112C134 154 110 182 80 190C50 182 26 154 26 112C26 72 48 40 80 10Z" stroke="currentColor" stroke-width="1"/>
+        <path d="M80 36V190" stroke="currentColor" stroke-width="0.7"/>
+        <path d="M42 98C58 88 102 88 118 98" stroke="currentColor" stroke-width="0.7"/>
+        <path d="M36 128C56 118 104 118 124 128" stroke="currentColor" stroke-width="0.7"/>
+        <path d="M50 156C64 149 96 149 110 156" stroke="currentColor" stroke-width="0.7"/>
+        <circle cx="80" cy="70" r="10" stroke="currentColor" stroke-width="0.8"/>
+      </svg>
+    </section>
+
+    <section class="books" id="books">
+      <div class="section-head">
+        <h2>Published works</h2>
+        <span>eleven books, four genres</span>
+      </div>
+
+      <div class="book-row">
+        <div class="book-meta">
+          <span class="book-numeral">I</span>
+          <span class="book-genre">Horror<br>Fiction</span>
+        </div>
+        <div>
+          <h3 class="book-title">Tales of Unknown Origin</h3>
+          <p class="book-synopsis">A collection of standalone scary stories, framed through a boy who begins imagining them after watching a string of mysterious ghost videos. Each tale stands alone, built to unsettle and surprise.</p>
+          <a class="book-link" href="https://notionpress.com/author/328300" target="_blank" rel="noopener">Read on Notion Press →</a>
+        </div>
+      </div>
+
+      <div class="book-row">
+        <div class="book-meta">
+          <span class="book-numeral">II</span>
+          <span class="book-genre">Mythology<br>Epic insight</span>
+        </div>
+        <div>
+          <h3 class="book-title">Jaya Samhita — Mahabharata</h3>
+          <p class="book-synopsis">A look at lesser-known events of the Mahabharata, centred on what happened after the war at Kurukshetra: who survived, what the war cost, and a deeper reading of Krishna's role in it all.</p>
+          <a class="book-link" href="https://notionpress.com/author/328300" target="_blank" rel="noopener">Read on Notion Press →</a>
+        </div>
+      </div>
+
+      <div class="book-row">
+        <div class="book-meta">
+          <span class="book-numeral">III</span>
+          <span class="book-genre">Mythology<br>Purana</span>
+        </div>
+        <div>
+          <h3 class="book-title">Naimisha</h3>
+          <p class="book-synopsis">A retelling inspired by the Garuda Purana, built around the dialogue between Vishnu and Garuda, and turning toward death, funeral rites, and the journey of the soul.</p>
+          <a class="book-link" href="https://notionpress.com/author/328300" target="_blank" rel="noopener">Read on Notion Press →</a>
+        </div>
+      </div>
+
+      <div class="book-row">
+        <div class="book-meta">
+          <span class="book-numeral">IV</span>
+          <span class="book-genre">Mythology<br>Spiritual warfare</span>
+        </div>
+        <div>
+          <h3 class="book-title">Dhanur Veda — The Knowledge of Astra</h3>
+          <p class="book-synopsis">An exploration of the celestial weapons, the astras, and the martial knowledge described in Hindu tradition, rooted in Vedic and spiritual accounts of warfare.</p>
+          <a class="book-link" href="https://notionpress.com/author/328300" target="_blank" rel="noopener">Read on Notion Press →</a>
+        </div>
+      </div>
+
+      <div class="book-row">
+        <div class="book-meta">
+          <span class="book-numeral">V</span>
+          <span class="book-genre">Romance<br>Fantasy</span>
+        </div>
+        <div>
+          <h3 class="book-title">Love Beyond the Galaxies</h3>
+          <p class="book-synopsis">A love story that crosses worlds, following its protagonist beyond the galaxies in search of a love without limits &mdash; a close, emotional look at what first love feels like.</p>
+          <a class="book-link" href="https://notionpress.com/author/328300" target="_blank" rel="noopener">Read on Notion Press →</a>
+        </div>
+      </div>
+
+      <div class="book-row">
+        <div class="book-meta">
+          <span class="book-numeral">VI</span>
+          <span class="book-genre">Memoir<br>Reflective</span>
+        </div>
+        <div>
+          <h3 class="book-title">Golden Memories of Life</h3>
+          <p class="book-synopsis">A nostalgic account of college life &mdash; its friendships, small moments, and the experiences that stay with anyone who still holds on to their younger years.</p>
+          <a class="book-link" href="https://notionpress.com/author/328300" target="_blank" rel="noopener">Read on Notion Press →</a>
+        </div>
+      </div>
+
+      <div class="book-row">
+        <div class="book-meta">
+          <span class="book-numeral">VII</span>
+          <span class="book-genre">Mythology</span>
+        </div>
+        <div>
+          <h3 class="book-title">The Oath of Triloknath — Unknown Tales of Shiva</h3>
+          <p class="book-synopsis">Stories of Mahadeva drawn from the Puranas &mdash; his origins, his avatars, and his divine acts &mdash; alongside explanations of the Jyotirlingas and the histories behind them.</p>
+          <a class="book-link" href="https://notionpress.com/author/328300" target="_blank" rel="noopener">Read on Notion Press →</a>
+        </div>
+      </div>
+
+      <div class="book-row">
+        <div class="book-meta">
+          <span class="book-numeral">VIII</span>
+          <span class="book-genre">Mythology<br>Epic</span>
+        </div>
+        <div>
+          <h3 class="book-title">Jamadagnya Rama</h3>
+          <p class="book-synopsis">A study of Parashurama, the warrior sage, told through the lesser-known parts of his life &mdash; his battles, and the part he played in upholding dharma.</p>
+          <a class="book-link" href="https://notionpress.com/author/328300" target="_blank" rel="noopener">Read on Notion Press →</a>
+        </div>
+      </div>
+
+      <div class="book-row">
+        <div class="book-meta">
+          <span class="book-numeral">IX</span>
+          <span class="book-genre">Mythology<br>Epic</span>
+        </div>
+        <div>
+          <h3 class="book-title">Dashakantha — Ravana Asura</h3>
+          <p class="book-synopsis">A retelling of the Ramayana centred on Ravana, read here as an unsung and powerful figure &mdash; offering a different way into his life and legacy.</p>
+          <a class="book-link" href="https://notionpress.com/author/328300" target="_blank" rel="noopener">Read on Notion Press →</a>
+        </div>
+      </div>
+
+      <div class="book-row">
+        <div class="book-meta">
+          <span class="book-numeral">X</span>
+          <span class="book-genre">Human<br>Reflective</span>
+        </div>
+        <div>
+          <h3 class="book-title">The Unsung Hero</h3>
+          <p class="book-synopsis">A heartfelt story of a father as guardian and protector, and the quiet bonds &mdash; love, longing, growth &mdash; that shape a family from within.</p>
+          <a class="book-link" href="https://notionpress.com/author/328300" target="_blank" rel="noopener">Read on Notion Press →</a>
+        </div>
+      </div>
+
+      <div class="book-row">
+        <div class="book-meta">
+          <span class="book-numeral">XI</span>
+          <span class="book-genre">Mythology<br>Epic</span>
+        </div>
+        <div>
+          <h3 class="book-title">Tales of Ramayana: Wisdom through Ages</h3>
+          <p class="book-synopsis">A retelling of moments from the Ramayana, drawn together for the wisdom they still hold &mdash; carrying the epic's lessons on duty, devotion, and character across generations of readers.</p>
+          <a class="book-link" href="https://www.amazon.com/dp/935898709X" target="_blank" rel="noopener">Read on Amazon →</a>
+        </div>
+      </div>
+
+    </section>
+
+    <section class="contact" id="contact">
+      <h2>Get in touch</h2>
+      <p>For readings, collaborations, or just to talk about the Puranas &mdash; reach out.</p>
+      <div class="contact-links">
+        <a href="https://notionpress.com/author/328300" target="_blank" rel="noopener">Notion Press profile</a>
+        <a href="https://www.amazon.in/stores/T.krishna-Dinesh/author/B0GZHWMHSQ" target="_blank" rel="noopener">Amazon author page</a>
+        <a href="mailto:booklove788@gmail.com">booklove788@gmail.com</a>
+        <a href="https://www.instagram.com/t.krishnadinesh/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://in.linkedin.com/in/t-krishna-dinesh" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </section>
+  </div>
+
+
+</main>
+
+<footer>
+  © 2026 T. Krishna Dinesh. All books available via Notion Press.
+</footer>
+
+</body>
+</html>
